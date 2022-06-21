@@ -1,6 +1,6 @@
 import {Request, Response, Router} from 'express';
 import { request } from 'http';
-import {datapost, findAll, findByID} from '../services/DataServices';
+import {datapost, deletedata, findAll, findByID} from '../services/DataServices';
 
 export const DataRouter: Router = Router();
 
@@ -42,4 +42,11 @@ DataRouter.post('/data', async (req: Request, res: Response)=>{
         //logger
         res.status(404).json('error');
     }
+})
+
+//delete
+DataRouter.delete('/data/:id', async(req:Request, res:Response)=>{
+    let deleteid:number = Number(req.params.id)
+    const todelete = await deletedata(deleteid)
+    res.status(200).json({message:`data of id ${deleteid} has been deleted`, data: todelete  })
 })

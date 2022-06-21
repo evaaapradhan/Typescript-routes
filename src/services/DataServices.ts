@@ -15,3 +15,9 @@ export const datapost =(item: datas) =>{
     mockdata.push(item);
     return Promise.resolve(mockdata);
 }
+
+export const deletedata = (todeleteid:number) =>{
+    const deleteD = mockdata.filter((data)=>data.id !== todeleteid);  
+    // data --> array's every element, can give any variable
+    return Promise.resolve(deleteD)
+}
